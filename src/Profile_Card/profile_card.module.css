@@ -1,0 +1,29 @@
+.card {
+    width: 300px;
+    margin: 0 0 0 60px;
+    display: block;
+    padding: 30px;
+}
+.profile {
+    background: linear-gradient(to bottom, rgba(39,170,225,.8), rgba(28,117,188,.8)), url(../img/1.jpg) no-repeat;
+    background-size: cover;
+    width: 240px;
+    min-height: 90px;
+    border-radius: 4px;
+    padding: 10px 20px;
+    color: #fff;
+    margin-bottom: 40px;
+}
+.logo {
+    border: 7px solid #fff;
+    float: left;
+    margin-right: 20px;
+    position: relative;
+    top: -30px;
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+}
+.text_white {
+
+}

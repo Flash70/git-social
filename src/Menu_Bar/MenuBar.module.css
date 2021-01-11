@@ -1,0 +1,19 @@
+a {
+    text-decoration: none;
+    color: #4f4c4d;
+}
+a:hover {
+    text-decoration: underline;
+    color: #1c1a1c;
+}
+.menu_bar {
+    width: 1170px;
+    margin: 0 auto;
+}
+.menu {
+
+}
+.menu_link {
+    display: block;
+    padding: 15px 0;
+}
