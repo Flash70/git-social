@@ -7,23 +7,23 @@ import Profile_card from "./Profile_Card/profile_card";
 const MenuBar = () => {
     return (
         <div>
-            <Profile_card />
+            <Profile_card/>
             <div className={stail.menu_bar}>
                 <ul className={stail.menu}>
                     <li className={stail.menu_link}>
-                         <a href='#'>My Newsfeed</a>
+                        <NavLink to='/newsfeed' activeClassName={stail.activLink}>My Newsfeed</NavLink>
                     </li>
                     <li className={stail.menu_link}>
-                        <a href='#'>Friends</a>
+                        <NavLink to='/friends' activeClassName={stail.activLink}>Friends</NavLink>
                     </li>
                     <li className={stail.menu_link}>
-                        <a href='#'>Messages</a>
+                        <NavLink to='/messages' activeClassName={stail.activLink}>Messages</NavLink>
                     </li>
                     <li className={stail.menu_link}>
-                        <a href='#'>Images</a>
+                        <NavLink to='/images' activeClassName={stail.activLink}>Images</NavLink>
                     </li>
                     <li className={stail.menu_link}>
-                        <a href='#'>Videos</a>
+                        <NavLink to='/videos' activeClassName={stail.activLink}>Videos</NavLink>
                     </li>
                 </ul>
             </div>

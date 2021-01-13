@@ -1,25 +1,36 @@
-import logo from './logo.svg';
 import './App.css';
 import Header from './Header/Header';
 import MenuBar from './Menu_Bar/MenuBar';
-import Newsfeed from './Newsfeed/Newsfeed'
+import Newsfeed from './Content/Newsfeed/Newsfeed'
+import Messages from "./Content/Messages/Messages";
+import {BrowserRouter, Route} from "react-router-dom"
+import Videos from "./Content/Videos/Videos";
+import Images from "./Content/Images/Images";
+import Friends from "./Content/Friends/Friends";
 
-const App = () => {
-  return (
-    <div className="container">
-        <div className='header'>
-            <Header />
-        </div>
-        <div className='content'>
-            <div className='menu_bar'>
-                <MenuBar />
+const App = (props) => {
+    debugger;
+    return (
+        <BrowserRouter>
+            <div className="container">
+                <div className='header'>
+                    <Header/>
+                </div>
+                <div className='content'>
+                    <div className='menu_bar'>
+                        <MenuBar/>
+                    </div>
+                    <div className='newsfeed'>
+                        <Route exact path='/newsfeed'
+                               render={() => <Newsfeed posts={props.state.profilePage} addPost={props.addPost}/>}/>
+                        <Route path='/messages' render={() => <Messages messages={props.state.messagesPage}/>}/>
+                        <Route path='/friends' render={() => <Friends/>}/>
+                        <Route path='/images' render={() => <Images/>}/>
+                        <Route path='/videos' render={() => <Videos/>}/>
+                    </div>
+                </div>
             </div>
-            <div className='newsfeed'>
-                <Newsfeed />
-            </div>
-        </div>
-    </div>
-  );
+        </BrowserRouter>
+    );
 }
-
 export default App;

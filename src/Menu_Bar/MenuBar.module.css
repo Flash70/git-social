@@ -4,7 +4,7 @@ a {
 }
 a:hover {
     text-decoration: underline;
-    color: #1c1a1c;
+    color: #05d8ff;
 }
 .menu_bar {
     margin: 0 auto;
@@ -15,4 +15,7 @@ a:hover {
 .menu_link {
     display: block;
     padding: 15px 0;
+}
+.activLink {
+    color: #05d8ff;
 }
