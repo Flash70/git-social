@@ -1,0 +1,17 @@
+.container {
+
+}
+.content {
+    width: 1170px;
+    margin: 0 auto;
+    display: flex;
+}
+.header {
+
+}
+.menu_bar {
+
+}
+.newsfeed {
+    width: 100%;
+}

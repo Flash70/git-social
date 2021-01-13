@@ -1,5 +1,5 @@
 .my_post {
-    margin: 0 auto;
+    margin: 25px 0 0 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -26,10 +26,18 @@
     color: white;
     font-weight: 600;
     transition: background .3s linear;
+    margin-left: 150px;
 }
 .btn:hover {
     background: #1392e1;
     color: white;
     text-decoration: none;
     transition: background .3s linear;
+}
+hr {
+    color: #939598;
+    background-color: #939598;
+    height: 1px;
+    border: none;
+    width: 100%;
 }

@@ -1,10 +1,10 @@
 import React from 'react';
 import stail from './profile_card.module.css';
-import img from '../img/prof.jpg';
+import img from '../../img/prof.jpg';
 import {NavLink} from "react-router-dom";
 
 
-const profile_card = () => {
+const Profile_card = () => {
     return (
         <div className={stail.card}>
             <div className={stail.profile}>
@@ -19,4 +19,4 @@ const profile_card = () => {
         </div>
     )
 }
-export default profile_card;
+export default Profile_card;

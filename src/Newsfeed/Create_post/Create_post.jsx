@@ -12,6 +12,7 @@ const Create_post = () => {
                 <textarea className={stail.form_control} name="texts" id="exampleTextarea" cols="30" rows="1">Write what you wish</textarea>
                 <a className={stail.btn} href="#">Publish</a>
             </div>
+            <div><hr/></div>
         </div>
 
     )
