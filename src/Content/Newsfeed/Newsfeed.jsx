@@ -5,11 +5,11 @@ import Post_content from "./Post_content/Post_content";
 
 
 const Newsfeed = (props) => {
-    let postsElements = props.posts.postData.map(posts => <Post_content message={posts.message}
-                                                                        likesCount={posts.likesCount}/>)
+    let postsElements = props.newsfeedPage.postData.map(posts => <Post_content message={posts.message}
+                                                                               likesCount={posts.likesCount}/>)
     return (
         <div className={stail.container}>
-            <Create_post addPost={props.addPost}/>
+            <Create_post newPostText={props.newsfeedPage.newPostText} dispatch={props.dispatch}/>
             {postsElements}
         </div>
     )
