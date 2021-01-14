@@ -22,8 +22,11 @@ const App = (props) => {
                     </div>
                     <div className='newsfeed'>
                         <Route exact path='/newsfeed'
-                               render={() => <Newsfeed posts={props.state.profilePage} addPost={props.addPost}/>}/>
-                        <Route path='/messages' render={() => <Messages messages={props.state.messagesPage}/>}/>
+                               render={() => <Newsfeed profilePage={props.state.profilePage} addPost={props.addPost}
+                                                       updatePostText={props.updatePostText}/>}/>
+                        <Route path='/messages' render={() => <Messages addNewMessages={props.addNewMessages}
+                                                                        messagesPage={props.state.messagesPage}
+                                                                        updateMessagesText={props.updateMessagesText}/>}/>
                         <Route path='/friends' render={() => <Friends/>}/>
                         <Route path='/images' render={() => <Images/>}/>
                         <Route path='/videos' render={() => <Videos/>}/>
