@@ -1,12 +1,12 @@
 import './App.css';
-import Header from './Header/Header';
-import MenuBar from './Menu_Bar/MenuBar';
-import Newsfeed from './Content/Newsfeed/Newsfeed'
-import Messages from "./Content/Messages/Messages";
+import Header from './components/Header/Header';
+import MenuBar from './components/Menu_Bar/MenuBar';
+import Newsfeed from './components/Newsfeed/Newsfeed'
+import Messages from "./components/Messages/Messages";
 import {BrowserRouter, Route} from "react-router-dom"
-import Videos from "./Content/Videos/Videos";
-import Images from "./Content/Images/Images";
-import Friends from "./Content/Friends/Friends";
+import Videos from "./components/Content/Videos/Videos";
+import Images from "./components/Content/Images/Images";
+import Friends from "./components/Content/Friends/Friends";
 
 const App = (props) => {
     debugger;

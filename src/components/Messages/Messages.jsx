@@ -1,7 +1,7 @@
 import React from 'react';
 import stail from './Messages.module.css';
-import DialogsFrindes from "./DialogsFrindes/DialogsFrindes";
-import MessageFrindes from "./MessageFrindes/MessagesFrindes";
+import DialogsFrindes from "./DialogsFriendes/DialogsFrindes";
+import MessageFrindes from "./MessageFriendes/MessagesFrindes";
 
 const Messages = (props) => {
     let newMessagesElement = React.createRef();

@@ -1,7 +1,7 @@
 import React from 'react';
 import stail from './Post_content.module.css';
 import {NavLink} from "react-router-dom";
-import img from '../../../img/2.jpg'
+import img from '../../img/2.jpg'
 
 
 const Post_content = (props) => {

@@ -1,5 +1,6 @@
-import {renderEntireTree} from "../index";
+let renderEntireTree = () => {
 
+}
 let state = {
     profilePage: {
         postData: [
@@ -13,7 +14,7 @@ let state = {
             {id: 3, message: 'Yo', likesCount: 4},
             {id: 4, message: 'Yo', likesCount: 7}
         ],
-        newPostText: 'asss',
+        newPostText: 'dddd',
     },
     messagesPage: {
         messagesData: [
@@ -28,22 +29,22 @@ let state = {
             {id: 3, name: 'Roma'},
             {id: 4, name: 'Juliana'},
         ],
-        NewMessages: 'fff',
+        NewMessages: '',
     },
 }
-export let addPost = () => {
+export let addPost = () => { //отправляет данные по клику
     let newPost = {
-        id:5,
+        id: 5,
         message: state.profilePage.newPostText,
         likesCount: 0,
     }
     state.profilePage.postData.push(newPost);
     state.profilePage.newPostText = '';
-    renderEntireTree (state);
+    renderEntireTree(state);
 }
-export let updatePostText = (newText) => {
+export let updatePostText = (newText) => { // обновляет textarea при вводе данных
     state.profilePage.newPostText = newText;
-    renderEntireTree (state);
+    renderEntireTree(state);
 }
 
 export let addNewMessages = () => {
@@ -54,9 +55,13 @@ export let addNewMessages = () => {
     state.messagesPage.messagesData.push(NewMessages)
     state.messagesPage.NewMessages = '';
     renderEntireTree(state);
-}
+} //отправляет данные по клику
 export let updateMessagesText = (newText) => {
     state.messagesPage.NewMessages = newText;
     renderEntireTree(state);
+} // обновляет textarea при вводе данных
+
+export const subscride = (observer) => {       // функция передает renderEntireTree из index.js позволяя
+    renderEntireTree = observer;               // рендерить страницу
 }
 export default state;
