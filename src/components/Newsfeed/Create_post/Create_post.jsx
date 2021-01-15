@@ -1,7 +1,8 @@
 import React from 'react';
 import stail from './Create_post.module.css';
 import img from '../../img/prof.jpg';
-import {addPostActionCreator, updatePostTextActionCreator} from "../../../redux/state";
+import {addPostActionCreator, updatePostTextActionCreator} from "../../../redux/profilePageReduser";
+
 
 const Create_post = (props) => {
     let newPostElement = React.createRef();        // ссылка на textarea через ref

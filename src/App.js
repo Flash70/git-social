@@ -3,15 +3,15 @@ import Header from './components/Header/Header';
 import MenuBar from './components/Menu_Bar/MenuBar';
 import Newsfeed from './components/Newsfeed/Newsfeed'
 import Messages from "./components/Messages/Messages";
-import {BrowserRouter, Route} from "react-router-dom"
+import {Route} from "react-router-dom"
 import Videos from "./components/Content/Videos/Videos";
 import Images from "./components/Content/Images/Images";
 import Friends from "./components/Content/Friends/Friends";
+import store from "./redux/redux_store";
 
 const App = (props) => {
     debugger;
     return (
-        <BrowserRouter>
             <div className="container">
                 <div className='header'>
                     <Header/>
@@ -31,7 +31,6 @@ const App = (props) => {
                     </div>
                 </div>
             </div>
-        </BrowserRouter>
     );
 }
 export default App;

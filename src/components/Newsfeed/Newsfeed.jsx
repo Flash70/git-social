@@ -5,6 +5,7 @@ import Post_content from "./Post_content/Post_content";
 
 
 const Newsfeed = (props) => {
+    debugger
     let postsElements = props.profilePage.postData.map(posts => <Post_content message={posts.message}
                                                                         likesCount={posts.likesCount}/>)
     return (
