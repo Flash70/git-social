@@ -3,19 +3,18 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import state, {addNewMessages, addPost, subscride, updateMessagesText, updatePostText} from './redux/state'
+import store from './redux/state'
 
-export let renderEntireTree = () => { // рендерит страницу придобавлении данных
+export let renderEntireTree = (state) => { // рендерит страницу при добавлении данных
     ReactDOM.render(
         <React.StrictMode>
-            <App state={state} addPost={addPost} addNewMessages={addNewMessages} updatePostText={updatePostText}
-                 updateMessagesText={updateMessagesText}/>
+            <App state={state} dispatch={store.dispatch.bind(store)}/>
         </React.StrictMode>,
         document.getElementById('root')
     );
 }
-renderEntireTree();
-subscride(renderEntireTree);
+renderEntireTree(store.getState());
+store.subscride(renderEntireTree);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

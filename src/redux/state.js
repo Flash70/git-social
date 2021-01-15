@@ -1,67 +1,97 @@
-let renderEntireTree = () => {
+const type = 'ADD-POST';
+const type1 = 'UPDATE-POST-TEXT';
+const type2 = 'ADD-NEW-MESSAGES';
+const type3 = 'UPDATE-MESSAGES-TEXT';
 
-}
-let state = {
-    profilePage: {
-        postData: [
-            {id: 1, message: 'Hi', likesCount: 20},
-            {
-                id: 2, message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, ' +
-                    'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ' +
-                    'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris ' +
-                    'nisi ut aliquip ex ea commodo consequat.', likesCount: 5
-            },
-            {id: 3, message: 'Yo', likesCount: 4},
-            {id: 4, message: 'Yo', likesCount: 7}
-        ],
-        newPostText: 'dddd',
+let store = {
+    _state: {
+        profilePage: {
+            postData: [
+                {id: 1, message: 'Hi', likesCount: 20},
+                {
+                    id: 2, message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, ' +
+                        'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ' +
+                        'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris ' +
+                        'nisi ut aliquip ex ea commodo consequat.', likesCount: 5
+                },
+                {id: 3, message: 'Yo', likesCount: 4},
+                {id: 4, message: 'Yo', likesCount: 7}
+            ],
+            newPostText: '',
+        },
+        messagesPage: {
+            messagesData: [
+                {id: 1, message: 'Hi'},
+                {id: 2, message: 'How is your drink?'},
+                {id: 3, message: 'Yo'},
+                {id: 4, message: 'Yo'}
+            ],
+            friends: [
+                {id: 1, name: 'Dimych'},
+                {id: 2, name: 'Marina'},
+                {id: 3, name: 'Roma'},
+                {id: 4, name: 'Juliana'},
+            ],
+            NewMessages: 'DDD',
+        },
     },
-    messagesPage: {
-        messagesData: [
-            {id: 1, message: 'Hi'},
-            {id: 2, message: 'How is your drink?'},
-            {id: 3, message: 'Yo'},
-            {id: 4, message: 'Yo'}
-        ],
-        friends: [
-            {id: 1, name: 'Dimych'},
-            {id: 2, name: 'Marina'},
-            {id: 3, name: 'Roma'},
-            {id: 4, name: 'Juliana'},
-        ],
-        NewMessages: '',
+    _renderEntireTree() {
+        console.log('consol')
+    },
+
+
+    getState() {                                         //вызов store
+        return this._state
+    },
+    subscride(observer) {                                 // функция передает renderEntireTree из index.js позволяя
+        this._renderEntireTree = observer;                // рендерить страницу
+    },
+
+    dispatch(action) {
+        if (action.type === type) {
+            let newPost = {                                                 //отправляет данные по клику
+                id: 5,
+                message: this._state.profilePage.newPostText,
+                likesCount: 0,
+            }
+            this._state.profilePage.postData.push(newPost);
+            this._state.profilePage.newPostText = '';
+            this._renderEntireTree(this._state);
+        }
+        else if (action.type === type1) {                      // обновляет textarea при вводе данных
+            this._state.profilePage.newPostText = action.newText;
+            this._renderEntireTree(this._state);
+        }
+        else if (action.type === type2) {                       //отправляет данные по клику
+            let NewMessages = {
+                id: 5,
+                message: this._state.messagesPage.NewMessages,
+            }
+            this._state.messagesPage.messagesData.push(NewMessages)
+            this._state.messagesPage.NewMessages = '';
+            this._renderEntireTree(this._state);
+        }
+        else if (action.type === type3) {                    // обновляет textarea при вводе данных
+            this._state.messagesPage.NewMessages = action.newText;
+            this._renderEntireTree(this._state);
+        }
     },
 }
-export let addPost = () => { //отправляет данные по клику
-    let newPost = {
-        id: 5,
-        message: state.profilePage.newPostText,
-        likesCount: 0,
-    }
-    state.profilePage.postData.push(newPost);
-    state.profilePage.newPostText = '';
-    renderEntireTree(state);
-}
-export let updatePostText = (newText) => { // обновляет textarea при вводе данных
-    state.profilePage.newPostText = newText;
-    renderEntireTree(state);
-}
 
-export let addNewMessages = () => {
-    let NewMessages = {
-        id: 5,
-        message: state.messagesPage.NewMessages,
-    }
-    state.messagesPage.messagesData.push(NewMessages)
-    state.messagesPage.NewMessages = '';
-    renderEntireTree(state);
-} //отправляет данные по клику
-export let updateMessagesText = (newText) => {
-    state.messagesPage.NewMessages = newText;
-    renderEntireTree(state);
-} // обновляет textarea при вводе данных
+export const addPostActionCreator = () => ({type: type})
 
-export const subscride = (observer) => {       // функция передает renderEntireTree из index.js позволяя
-    renderEntireTree = observer;               // рендерить страницу
+export const updatePostTextActionCreator = (text) => {
+    return {
+        type: type1,
+        newText: text
+    }
 }
-export default state;
+export const addMessagesActionCreator = () => {
+    return {
+        type: type2
+    }
+}
+export const updateMessagesTextActionCreator = (text) => ({type: type3, newText: text})
+
+
+export default store;

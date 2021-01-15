@@ -9,7 +9,7 @@ const Newsfeed = (props) => {
                                                                         likesCount={posts.likesCount}/>)
     return (
         <div className={stail.container}>
-            <Create_post profilePage={props.profilePage} addPost={props.addPost} updatePostText={props.updatePostText}/>
+            <Create_post profilePage={props.profilePage} dispatch={props.dispatch}/>
             {postsElements}
         </div>
     )

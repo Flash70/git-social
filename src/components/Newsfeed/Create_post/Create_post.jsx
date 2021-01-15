@@ -1,18 +1,22 @@
 import React from 'react';
 import stail from './Create_post.module.css';
 import img from '../../img/prof.jpg';
-
+import {addPostActionCreator, updatePostTextActionCreator} from "../../../redux/state";
 
 const Create_post = (props) => {
-    let newPostElement = React.createRef(); // ссылка на textarea через ref
+    let newPostElement = React.createRef();        // ссылка на textarea через ref
 
-    let Publish = () => {
-        props.addPost()
+    let Publish = () => {                            //вызывается при нажатии на кнопку
+        props.dispatch(addPostActionCreator ())
     };
-    let onPostChange = () => {
+    let onPostChange = () => {                         //ВЫЗЫВАЕТСЯ КОГДА МЕНЯЕТСЯ textarea
         let text = newPostElement.current.value;
-        props.updatePostText (text);
+        //props.dispatch({type: 'UPDATE-POST-TEXT', newText: text});
+        // let action = {type: 'UPDATE-POST-TEXT', newText: text};
+        let action = updatePostTextActionCreator (text);
+        props.dispatch(action);
     }
+
     return (
         <div>
             <div className={stail.my_post}>
