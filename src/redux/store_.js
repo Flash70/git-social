@@ -1,8 +1,8 @@
 import messagesPageReduser from "./messagesPageReduser";
-import profilePageReduser from "./profilePageReduser";
+import createPostReduser from "./profilePageReduser";
 
 
-let store = {
+let store_ = {
     _state: {
         profilePage: {
             postData: [
@@ -39,7 +39,7 @@ let store = {
     },
 
 
-    getState() {                                         //вызов store
+    getState() {                                         //вызов store_
         return this._state
     },
     subscribe(observer) {                                 // функция передает renderEntireTree из index.js позволяя
@@ -48,7 +48,7 @@ let store = {
 
     dispatch(action) {
         this._state.messagesPage = messagesPageReduser(this._state.messagesPage, action)
-        this._state.profilePage = profilePageReduser(this._state.profilePage, action)
+        this._state.profilePage = createPostReduser(this._state.profilePage, action)
         this._renderEntireTree(this._state);
 
         // if (action.type === type) {
@@ -85,4 +85,4 @@ let store = {
 
 
 
-export default store;
+export default store_;

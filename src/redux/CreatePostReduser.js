@@ -10,35 +10,27 @@ let initialState = {
                     'nisi ut aliquip ex ea commodo consequat.', likesCount: 5
             },
             {id: 3, message: 'Yo', likesCount: 4},
-            {id: 4, message: 'Yo', likesCount: 7}
+            {id: 4, message: 'Yo Yo', likesCount: 7}
         ],
         newPostText: '',
     }
 
-const profilePageReduser = (state = initialState, action) => {
+const createPostReduser = (state = initialState, action) => {
     switch (action.type) {
         case type:
-            let newPost = {                                                 //отправляет данные по клику
-                id: 5,
-                message: state.newPostText,
-                likesCount: 0,
+            let text = state.newPostText;
+            return  {
+                ...state,
+                newPostText: '',
+                postData: [...state.postData, {id: 5, message: text, likesCount: 0}],
             }
-            state.postData.push(newPost);
-            state.newPostText = '';
-            return state;
-        case type1: // обновляет textarea при вводе данных
-            state.newPostText = action.newText;
-            return state;
+        case type1:                                // обновляет textarea при вводе данных
+            return  {...state, newPostText: action.newText}
         default:
             return state;
     }
 }
 export const addPostActionCreator = () => ({type: type})
 
-export const updatePostTextActionCreator = (text) => {
-    return {
-        type: type1,
-        newText: text
-    }
-}
-export default profilePageReduser;
+export const updatePostTextActionCreator = (text) => ({type: type1,newText: text})
+export default createPostReduser;

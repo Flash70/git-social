@@ -2,23 +2,22 @@ import React from 'react';
 import stail from './Messages.module.css';
 import DialogsFrindes from "./DialogsFriendes/DialogsFrindes";
 import MessageFrindes from "./MessageFriendes/MessagesFrindes";
-import {addMessagesActionCreator, updateMessagesTextActionCreator} from "../../redux/messagesPageReduser";
-
 
 const Messages = (props) => {
-    //let newMessagesElement = React.createRef();
+    let state = props.messagesPage;
 
     let newSend = () => {
-        props.dispatch(addMessagesActionCreator())
+        props.addMessages();
     };
     let onMessagesChange = (event) => {
         let text = event.target.value;
-        props.dispatch(updateMessagesTextActionCreator(text))
+        props.updateMessages(text);
     }
-debugger
-    let friendsElements = props.messagesPage.friends.map(dialods => <DialogsFrindes name={dialods.name}
-                                                                                    id={dialods.id}/>);
-    let messageElements = props.messagesPage.messagesData.map(message => <MessageFrindes message={message.message}/>);
+    debugger
+    let friendsElements = state.friends.map(dialods => <DialogsFrindes name={dialods.name} key={dialods.id}
+                                                                       id={dialods.id}/>);
+    let messageElements = state.messagesData.map(message => <MessageFrindes message={message.message} key={message.id}/>);
+    let NewMessagesElements = state.NewMessagesText
 
     return (
         <div className={stail.container}>
@@ -27,7 +26,7 @@ debugger
             </div>
             <div className={stail.messages}>
                 {messageElements}
-                <textarea onChange={onMessagesChange} value={props.messagesPage.NewMessages}
+                <textarea onChange={onMessagesChange} value={NewMessagesElements}
                           className={stail.form_control} name="texts" cols="30" rows="1"
                           placeholder="Write what you wish"/>
                 <a className={stail.btn} href="#" onClick={newSend}>Send</a>

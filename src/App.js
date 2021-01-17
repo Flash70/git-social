@@ -1,16 +1,14 @@
 import './App.css';
 import Header from './components/Header/Header';
 import MenuBar from './components/Menu_Bar/MenuBar';
-import Newsfeed from './components/Newsfeed/Newsfeed'
-import Messages from "./components/Messages/Messages";
 import {Route} from "react-router-dom"
 import Videos from "./components/Content/Videos/Videos";
 import Images from "./components/Content/Images/Images";
 import Friends from "./components/Content/Friends/Friends";
-import store from "./redux/redux_store";
+import Messages_Container from "./components/Messages/Messages_Container";
+import NewsfeedContainer from "./components/Newsfeed/NewsfeedContainer";
 
-const App = (props) => {
-    debugger;
+const App = () => {
     return (
             <div className="container">
                 <div className='header'>
@@ -22,9 +20,8 @@ const App = (props) => {
                     </div>
                     <div className='newsfeed'>
                         <Route exact path='/newsfeed'
-                               render={() => <Newsfeed profilePage={props.state.profilePage} dispatch={props.dispatch}/>}/>
-                        <Route path='/messages' render={() => <Messages dispatch={props.dispatch}
-                                                                        messagesPage={props.state.messagesPage}/>}/>
+                               render={() => <NewsfeedContainer/>}/>
+                        <Route path='/messages' render={() => <Messages_Container/>}/>
                         <Route path='/friends' render={() => <Friends/>}/>
                         <Route path='/images' render={() => <Images/>}/>
                         <Route path='/videos' render={() => <Videos/>}/>
