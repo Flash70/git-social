@@ -2,6 +2,7 @@ import React from 'react';
 import stail from './Header.module.css'
 import img from '../img/logo.png'
 import svg from '../img/clipart.png'
+import {NavLink} from "react-router-dom";
 
 const Header = () => {
     return (
@@ -14,8 +15,8 @@ const Header = () => {
                 </form>
                 <div className={stail.containe}>
                     <nav className={stail.nav}>
-                        <a href="#" className={stail.nav__link}>Home</a>
-                        <a href="#" className={stail.nav__link}>Newsfeed</a>
+                        <NavLink to='/home' className={stail.nav__link}>Home</NavLink>
+                        <NavLink to='/newsfeed' className={stail.nav__link}>Newsfeed</NavLink>
                         <a href="#" className={stail.nav__link}>Settings</a>
                         <a href="#" className={stail.nav__link}>Contact</a>
                     </nav>

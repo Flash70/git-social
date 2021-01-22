@@ -1,0 +1,52 @@
+.container {
+    background-image: url("../../img/1.jpg");
+    background-position: center;
+    background-size: cover;
+    min-height: 360px;
+    border-radius: 0 0 4px 4px;
+    position: relative;
+}
+.timeline_nav_bar {
+    background: rgba(0,0,0, .7);
+    width: 100%;
+    position: absolute;
+    bottom: 25px;
+}
+.row {
+
+}
+
+.profile_photo {
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    border: 10px solid #fff;
+}
+.profile_info {
+    position: absolute;
+    text-align: center;
+    padding: 0 20px;
+    top: -150px;
+    z-index: 999;
+}
+.profile_menu {
+    margin: 20px;
+}
+.col_md_9 {
+    display: flex;
+    float: left;
+    margin-left: 30%;
+}
+.profile_menu li {
+    float: left;
+    margin-left: 25px;
+    color: white;
+    text-decoration: none;
+    list-style-type: none;
+}
+.follow_me li {
+    color: white;
+    list-style-type: none;
+    float: left;
+}
+

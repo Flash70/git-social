@@ -2,6 +2,7 @@ import React from 'react';
 import stail from './Newsfeed.module.css';
 import Post_content from "./Post_content/Post_content";
 import Create_post_Container from "./Create_post/Create_post_Container";
+import MenuBar from "../Menu_Bar/MenuBar";
 
 
 
@@ -11,8 +12,13 @@ const Newsfeed = (props) => {
                                                                         likesCount={posts.likesCount}/>)
     return (
         <div className={stail.container}>
-            <Create_post_Container/>
-            {postsElements}
+            <div className={stail.menu_bar}>
+                <MenuBar/>
+                <div>
+                    <Create_post_Container/>
+                    {postsElements}
+                </div>
+            </div>
         </div>
     )
 }

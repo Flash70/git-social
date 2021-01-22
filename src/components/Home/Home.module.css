@@ -1,0 +1,9 @@
+.container {
+}
+.createPost {
+    width: 50%;
+    margin: 0 auto;
+    display: flex;
+    text-align: right;
+    padding-bottom: 20px;
+}

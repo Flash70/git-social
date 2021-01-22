@@ -1,2 +1,6 @@
 .container {
+    width: 1170px;
+}
+.menu_bar {
+    display: flex;
 }

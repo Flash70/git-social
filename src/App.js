@@ -7,6 +7,7 @@ import Images from "./components/Content/Images/Images";
 import Friends from "./components/Content/Friends/Friends";
 import Messages_Container from "./components/Messages/Messages_Container";
 import NewsfeedContainer from "./components/Newsfeed/NewsfeedContainer";
+import HomeContainer from "./components/Home/HomeContainer";
 
 const App = () => {
     return (
@@ -15,16 +16,14 @@ const App = () => {
                     <Header/>
                 </div>
                 <div className='content'>
-                    <div className='menu_bar'>
-                        <MenuBar/>
-                    </div>
-                    <div className='newsfeed'>
+                    <div className='workspace'>
                         <Route exact path='/newsfeed'
                                render={() => <NewsfeedContainer/>}/>
                         <Route path='/messages' render={() => <Messages_Container/>}/>
                         <Route path='/friends' render={() => <Friends/>}/>
                         <Route path='/images' render={() => <Images/>}/>
                         <Route path='/videos' render={() => <Videos/>}/>
+                        <Route path='/home/:userId?' render={() => <HomeContainer/>}/>
                     </div>
                 </div>
             </div>
