@@ -1,6 +1,4 @@
 import './App.css';
-import Header from './components/Header/Header';
-import MenuBar from './components/Menu_Bar/MenuBar';
 import {Route} from "react-router-dom"
 import Videos from "./components/Content/Videos/Videos";
 import Images from "./components/Content/Images/Images";
@@ -8,12 +6,13 @@ import Friends from "./components/Content/Friends/Friends";
 import Messages_Container from "./components/Messages/Messages_Container";
 import NewsfeedContainer from "./components/Newsfeed/NewsfeedContainer";
 import HomeContainer from "./components/Home/HomeContainer";
+import HeaderContainer from "./components/Header/HeaderContainer";
 
 const App = () => {
     return (
             <div className="container">
                 <div className='header'>
-                    <Header/>
+                    <HeaderContainer/>
                 </div>
                 <div className='content'>
                     <div className='workspace'>

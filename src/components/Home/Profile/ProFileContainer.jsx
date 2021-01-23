@@ -16,7 +16,7 @@ class ProFileContainer extends React.Component {
     }
     render() {
         return (
-            <ProFile profile={this.props.profile} profilePage={this.props.profilePage}/>
+            <ProFile profile={this.props.profile} profilePage={this.props.profilePage} login={this.props.login}/>
         )
     }
 }
@@ -25,6 +25,7 @@ let mapStateToProps = (state) => {
     return {
         profilePage: state.profilePage,
         profile: state.profilePage.profile,
+        login: state.auth.login,
     }
 }
 let WithUrlData = withRouter (ProFileContainer);

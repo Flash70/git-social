@@ -22,6 +22,7 @@
 .nav {
     font-size: 14px;
     text-transform: none;
+    color: #05d8ff;
 }
 .nav__link {
     color: #fff;
@@ -66,7 +67,7 @@
        /*search*/
 .search {
     /*margin-left: 350px;*/
-    float: right;
+    /*float: right;*/
 }
 .search__input {
     width: 250px;

@@ -2,14 +2,13 @@ import React from 'react';
 import stail from './ProFile.module.css';
 import userPhoto from "../../img/4.jpg";
 import {NavLink} from "react-router-dom";
-
-
+import Preloader from "../../common/Preloader/Preloader";
 
 
 
 const ProFile = (props) => {
     if(!props.profile) {
-        return <img src={userPhoto} className={stail.profile_photo}/>
+        return <Preloader/>
     }
     return (
         <div className={stail.container}>
@@ -18,8 +17,8 @@ const ProFile = (props) => {
                     <div className={stail.row}>
                         <div className={stail.col_md_3}>
                             <div className={stail.profile_info}>
-                                    <img src={props.profile.photos.large} className={stail.profile_photo}/>
-                                    <h3>{props.profile.fullName}</h3>
+                                    <img src={props.profile.photos.large != null ? props.profile.photos.large : userPhoto} className={stail.profile_photo}/>
+                                    <h3>{props.login}</h3>
                                     <p className={stail.text_muted}>Creative Director</p>
                             </div>
                         </div>

@@ -4,7 +4,7 @@ import img from '../img/logo.png'
 import svg from '../img/clipart.png'
 import {NavLink} from "react-router-dom";
 
-const Header = () => {
+const Header = (props) => {
     return (
         <div className={stail.header}>
             <div className={stail.container}>
@@ -19,6 +19,7 @@ const Header = () => {
                         <NavLink to='/newsfeed' className={stail.nav__link}>Newsfeed</NavLink>
                         <a href="#" className={stail.nav__link}>Settings</a>
                         <a href="#" className={stail.nav__link}>Contact</a>
+                        {props.isAuth ?  props.login : <NavLink to={'/login'} className={stail.nav__link}>Login</NavLink>}
                     </nav>
                 </div>
                 <button className={stail.menu_open}>

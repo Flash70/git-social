@@ -3,6 +3,9 @@ const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET-USERS';
 const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE'
 const set_Total_Users_Count = 'set-Total-Users-Count'
+const TOGGLE_IS_FETCHING = 'TOGGLE-IS-FETCHING'
+const TOGGLE_IS_FETCHING_PROGRESS = 'TOGGLE-IS-FETCHING-PROGRESS'
+
 
 
 let initialState = {
@@ -11,6 +14,7 @@ let initialState = {
     totalUsersCount: 0,  // количество элементов
     currentPage: 1, //начальная страница
     isFetching: false,
+    followingInProgress: [],
     }
 
 const friendsReduser = (state = initialState, action) => {
@@ -44,6 +48,15 @@ const friendsReduser = (state = initialState, action) => {
         case set_Total_Users_Count: {
             return {...state, totalUsersCount: action.count}                  //склеивает два масива
         }
+        case TOGGLE_IS_FETCHING: {
+            return {...state, isFetching: action.isFetching}                  //склеивает два масива
+        }
+        case TOGGLE_IS_FETCHING_PROGRESS: {
+            return {...state,
+                followingInProgress: action.isFetching
+                    ? [...state.followingInProgress, action.userId]
+                    : state.followingInProgress.filter(id => id != action.userId)}                  //склеивает два масива
+        }
         default:
             return state;
     }
@@ -51,8 +64,10 @@ const friendsReduser = (state = initialState, action) => {
 export const follow = (userId) => ({type: FOLLOW, userId})
 export const unfollow = (userId) => ({type: UNFOLLOW, userId})
 export const setUsers = (users) => ({type: SET_USERS, users})  //получает с сервера масив users
-export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage})  //получает с сервера масив users
-export const setTotalUsersCount = (totalUsersCount) => ({type: set_Total_Users_Count, count: totalUsersCount})  //получает с сервера масив users
+export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage})
+export const setTotalUsersCount = (totalUsersCount) => ({type: set_Total_Users_Count, count: totalUsersCount})
+export const setIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching})
+export const toggleFollowingProgress = (isFetching, userId) => ({type: TOGGLE_IS_FETCHING_PROGRESS, isFetching, userId})
 
 
 export default friendsReduser;
