@@ -9,7 +9,7 @@ import {
 } from "../../../../redux/FriendsReduser";
 import React from "react";
 import UsersFriends from "./UsersFriends";
-import {getFollowed, getUserd} from "../../../../api/api";
+import {getFollowed, getUsers} from "../../../../api/api";
 import Preloader from "../../../common/Preloader/Preloader";
 
 
@@ -17,7 +17,7 @@ import Preloader from "../../../common/Preloader/Preloader";
 class UsersFriendsClass extends React.Component {
     componentDidMount() {
         this.props.setIsFetching(true);
-        getUserd(this.props.currentPage, this.props.pageSize)
+        getUsers(this.props.currentPage, this.props.pageSize)
             .then(data => {
                 this.props.setIsFetching(false)
                 this.props.setUsers(data.items)
@@ -28,7 +28,7 @@ class UsersFriendsClass extends React.Component {
     onPageChanged = (pageNumber) => {
         this.props.setCurrentPage(pageNumber);
         this.props.setIsFetching(true);
-        getUserd(pageNumber, this.props.pageSize)
+        getUsers(pageNumber, this.props.pageSize)
             .then(data => {
                 this.props.setUsers(data.items)
                 this.props.setIsFetching(false);
