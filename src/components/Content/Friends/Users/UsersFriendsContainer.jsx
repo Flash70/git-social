@@ -1,48 +1,20 @@
 import {connect} from "react-redux";
-import {
-    follow,
-    setCurrentPage,
-    setIsFetching,
-    setTotalUsersCount,
-    setUsers, toggleFollowingProgress,
-    unfollow
-} from "../../../../redux/FriendsReduser";
+import {follow, getUsersThunk, setCurrentPage, toggleFollowingProgress, unfollow} from "../../../../redux/FriendsReduser";
 import React from "react";
 import UsersFriends from "./UsersFriends";
-import {getFollowed, getUsers} from "../../../../api/api";
 import Preloader from "../../../common/Preloader/Preloader";
+import {withAuthRedirect} from "../../../hoc/withAuthRedirect";
 
 
 
 class UsersFriendsClass extends React.Component {
     componentDidMount() {
-        this.props.setIsFetching(true);
-        getUsers(this.props.currentPage, this.props.pageSize)
-            .then(data => {
-                this.props.setIsFetching(false)
-                this.props.setUsers(data.items)
-                this.props.setTotalUsersCount(data.totalCount)
-            })
+        this.props.getUsers(this.props.currentPage, this.props.pageSize);
     }
 
     onPageChanged = (pageNumber) => {
-        this.props.setCurrentPage(pageNumber);
-        this.props.setIsFetching(true);
-        getUsers(pageNumber, this.props.pageSize)
-            .then(data => {
-                this.props.setUsers(data.items)
-                this.props.setIsFetching(false);
-            })
+        this.props.getUsers(pageNumber, this.props.pageSize);
     }
-
-    // onFollowingChanged = () => {
-    //     getFollowed(this.props.user.id)
-    //         .then(data => {
-    //             if (data.resultCode == 0) {
-    //                 this.props.unfollow(user.id)
-    //             }
-    //         })
-    // }
 
     render() {
 
@@ -55,11 +27,11 @@ class UsersFriendsClass extends React.Component {
                              users={this.props.users}
                              unfollow={this.props.unfollow}
                              follow={this.props.follow}
-                          toggleFollowingProgress={this.props.toggleFollowingProgress}
                           followingInProgress={this.props.followingInProgress}
-                          onFollowingChanged={this.props.onFollowingChanged}/></>
+                          /></>
     }
 }
+let AuthRedirectComponent = withAuthRedirect(UsersFriendsClass);
 
 let mapStateToProps = (state) => {
     return {
@@ -73,4 +45,4 @@ let mapStateToProps = (state) => {
 }
 
 
-export default connect(mapStateToProps,{follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, setIsFetching, toggleFollowingProgress})(UsersFriendsClass);
+export default connect(mapStateToProps,{follow, unfollow, setCurrentPage, toggleFollowingProgress, getUsers: getUsersThunk})(AuthRedirectComponent);

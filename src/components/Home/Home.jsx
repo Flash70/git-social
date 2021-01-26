@@ -3,6 +3,7 @@ import stail from './Home.module.css';
 import Post_content from "../Newsfeed/Post_content/Post_content";
 import Create_post_Container from "../Newsfeed/Create_post/Create_post_Container";
 import ProFileContainer from "./Profile/ProFileContainer";
+import {Redirect} from "react-router-dom";
 
 
 const Home = (props) => {

@@ -7,6 +7,7 @@ import Messages_Container from "./components/Messages/Messages_Container";
 import NewsfeedContainer from "./components/Newsfeed/NewsfeedContainer";
 import HomeContainer from "./components/Home/HomeContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
+import Login from "./components/Login/Login";
 
 const App = () => {
     return (
@@ -23,6 +24,7 @@ const App = () => {
                         <Route path='/images' render={() => <Images/>}/>
                         <Route path='/videos' render={() => <Videos/>}/>
                         <Route path='/home/:userId?' render={() => <HomeContainer/>}/>
+                        <Route path='/login' render={() => <Login/>}/>
                     </div>
                 </div>
             </div>

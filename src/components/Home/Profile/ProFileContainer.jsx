@@ -1,18 +1,14 @@
 import React from 'react';
 import ProFile from "./ProFile";
 import {connect} from "react-redux";
-import * as axios from "axios";
-import {setUsersProfile} from "../../../redux/CreatePostReduser";
+import {getUsersProfile} from "../../../redux/CreatePostReduser";
 import {withRouter} from "react-router-dom";
 
 class ProFileContainer extends React.Component {
     componentDidMount() {
         let userId = this.props.match.params.userId;
         if (!userId) { userId =2}
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId)
-            .then(response => {
-                this.props.setUsersProfile(response.data)
-            })
+        this.props.getUsersProfile(userId);
     }
     render() {
         return (
@@ -30,4 +26,4 @@ let mapStateToProps = (state) => {
 }
 let WithUrlData = withRouter (ProFileContainer);
 
-export  default connect(mapStateToProps, {setUsersProfile})(WithUrlData);
+export  default connect(mapStateToProps, {getUsersProfile})(WithUrlData);

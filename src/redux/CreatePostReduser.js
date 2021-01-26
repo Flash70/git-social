@@ -1,3 +1,6 @@
+import {usersAPI} from "../api/api";
+import {toggleFollowingProgress, unfollowSuccess} from "./FriendsReduser";
+
 const type = 'ADD-POST';
 const type1 = 'UPDATE-POST-TEXT';
 const set_Users_Profile = 'set-Users-Profile'
@@ -38,5 +41,12 @@ const createPostReduser = (state = initialState, action) => {
 export const addPostActionCreator = () => ({type: type})
 export const setUsersProfile = (profile) => ({type: set_Users_Profile, profile})
 export const updatePostTextActionCreator = (text) => ({type: type1, newText: text})
+
+export const getUsersProfile = (userId) =>(dispatch) => {
+    usersAPI.getProfile(userId)
+        .then(response => {
+            dispatch(setUsersProfile(response.data))
+        })
+}
 
 export default createPostReduser;

@@ -7,9 +7,7 @@ import Preloader from "../../common/Preloader/Preloader";
 
 
 const ProFile = (props) => {
-    if(!props.profile) {
-        return <Preloader/>
-    }
+    if(!props.profile) {return <Preloader/>}
     return (
         <div className={stail.container}>
             <div className={stail.timeline_cover}>
