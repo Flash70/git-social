@@ -4,6 +4,7 @@ import React from "react";
 import UsersFriends from "./UsersFriends";
 import Preloader from "../../../common/Preloader/Preloader";
 import {withAuthRedirect} from "../../../hoc/withAuthRedirect";
+import {compose} from "redux";
 
 
 
@@ -31,7 +32,6 @@ class UsersFriendsClass extends React.Component {
                           /></>
     }
 }
-let AuthRedirectComponent = withAuthRedirect(UsersFriendsClass);
 
 let mapStateToProps = (state) => {
     return {
@@ -44,5 +44,4 @@ let mapStateToProps = (state) => {
     }
 }
 
-
-export default connect(mapStateToProps,{follow, unfollow, setCurrentPage, toggleFollowingProgress, getUsers: getUsersThunk})(AuthRedirectComponent);
+export default compose (connect(mapStateToProps,{follow, unfollow, setCurrentPage, toggleFollowingProgress, getUsers: getUsersThunk}), withAuthRedirect)(UsersFriendsClass)

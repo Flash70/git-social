@@ -1,4 +1,4 @@
-import {usersAPI} from "../api/api";
+import {profileAPI, usersAPI} from "../api/api";
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET-USERS';
@@ -6,6 +6,8 @@ const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE'
 const set_Total_Users_Count = 'set-Total-Users-Count'
 const TOGGLE_IS_FETCHING = 'TOGGLE-IS-FETCHING'
 const TOGGLE_IS_FETCHING_PROGRESS = 'TOGGLE-IS-FETCHING-PROGRESS'
+const SET_STATUS = 'GET-STATUS'
+const SET_UPDATE_STATUS = 'SET-UPDATE-STATUS'
 
 
 
@@ -16,6 +18,7 @@ let initialState = {
     currentPage: 1, //начальная страница
     isFetching: false,
     followingInProgress: [],
+    status: "",
     }
 
 const friendsReduser = (state = initialState, action) => {
@@ -58,6 +61,12 @@ const friendsReduser = (state = initialState, action) => {
                     ? [...state.followingInProgress, action.userId]
                     : state.followingInProgress.filter(id => id != action.userId)}                  //склеивает два масива
         }
+        case SET_STATUS: {
+            return {...state, status: action.status}
+        }
+        case SET_UPDATE_STATUS: {
+            return {...state, status: action.status}
+        }
         default:
             return state;
     }
@@ -69,9 +78,11 @@ export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, current
 export const setTotalUsersCount = (totalUsersCount) => ({type: set_Total_Users_Count, count: totalUsersCount})
 export const setIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching})
 export const toggleFollowingProgress = (isFetching, userId) => ({type: TOGGLE_IS_FETCHING_PROGRESS, isFetching, userId})
+export const setStatus = (status, userId) => ({type: SET_STATUS, status, userId})
+export const setUpdateStatus = (status, userId) => ({type: SET_UPDATE_STATUS, status, userId})
 
-export const getUsersThunk = (currentPage, pageSize) => {
-    return (dispatch) => {
+
+export const getUsersThunk = (currentPage, pageSize) => (dispatch) => {
         dispatch(setIsFetching(true));
         usersAPI.getUsers(currentPage, pageSize)
             .then(data => {
@@ -80,31 +91,40 @@ export const getUsersThunk = (currentPage, pageSize) => {
                 dispatch(setTotalUsersCount(data.totalCount))
             })
     }
-}
-export const follow = (userId) => {
-    return (dispatch) => {
+export const follow = (userId) => (dispatch) => {
         dispatch(toggleFollowingProgress(true, userId));
         usersAPI.getFollowed(userId)
             .then(response => {
-                if (response.data.resultCode == 0) {
+                if (response.data.resultCode === 0) {
                     dispatch(followSuccess(userId))
                 }
                 dispatch(toggleFollowingProgress(false, userId));
             })
     }
-}
-
-export const unfollow = (userId) => {
-    return (dispatch) => {
+export const unfollow = (userId) => (dispatch) => {
         dispatch(toggleFollowingProgress(true, userId));
         usersAPI.getUnFollowed(userId)
             .then(response => {
-                if (response.data.resultCode == 0) {
+                if (response.data.resultCode === 0) {
                     dispatch(unfollowSuccess(userId))
                 }
                 dispatch(toggleFollowingProgress(false, userId));
             })
     }
-}
+export const getStatus = (userId) => (dispatch) => {
+        profileAPI.getStatusAPI(userId)
+            .then(response => {
+                dispatch(setStatus(response.data));
+            })
+    }
+export const getUpdateStatus = (status) => (dispatch) => {
+        profileAPI.updateStatusAPI(status)
+            .then(response => {
+                if (response.data.resultCode === 0) {
+                dispatch(setStatus(status));
+                }
+
+            })
+    }
 
 export default friendsReduser;

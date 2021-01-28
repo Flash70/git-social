@@ -3,7 +3,6 @@ import stail from './Messages.module.css';
 import DialogsFrindes from "./DialogsFriendes/DialogsFrindes";
 import MessageFrindes from "./MessageFriendes/MessagesFrindes";
 import MenuBar from "../Menu_Bar/MenuBar";
-import {Redirect} from "react-router-dom";
 
 const Messages = (props) => {
 

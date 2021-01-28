@@ -1,5 +1,5 @@
 import {usersAPI} from "../api/api";
-import {toggleFollowingProgress, unfollowSuccess} from "./FriendsReduser";
+
 
 const type = 'ADD-POST';
 const type1 = 'UPDATE-POST-TEXT';

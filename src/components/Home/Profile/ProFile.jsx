@@ -3,6 +3,7 @@ import stail from './ProFile.module.css';
 import userPhoto from "../../img/4.jpg";
 import {NavLink} from "react-router-dom";
 import Preloader from "../../common/Preloader/Preloader";
+import ProfileStatus from "./ProfileStatus/ProfileStatus";
 
 
 
@@ -17,7 +18,7 @@ const ProFile = (props) => {
                             <div className={stail.profile_info}>
                                     <img src={props.profile.photos.large != null ? props.profile.photos.large : userPhoto} className={stail.profile_photo}/>
                                     <h3>{props.login}</h3>
-                                    <p className={stail.text_muted}>Creative Director</p>
+                                    <p className={stail.text_muted}><ProfileStatus status={props.status} getUpdateStatus={props.getUpdateStatus}/></p>
                             </div>
                         </div>
                         <div className={stail.col_md_9}>

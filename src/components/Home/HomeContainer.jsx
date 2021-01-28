@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import {setUsersProfile} from "../../redux/CreatePostReduser";
 import Home from "./Home";
 import {withAuthRedirect} from "../hoc/withAuthRedirect";
+import {compose} from "redux";
 
 
 
@@ -14,7 +15,6 @@ class HomeContainer extends React.Component {
         )
     }
 }
-let AuthRedirectComponent = withAuthRedirect(HomeContainer);
 
 let mapStateToProps = (state) => {
     return {
@@ -22,6 +22,5 @@ let mapStateToProps = (state) => {
         profilePage: state.profilePage,
     }
 }
+export default compose (withAuthRedirect, connect(mapStateToProps, {setUsersProfile}))(HomeContainer)
 
-
-export default connect(mapStateToProps, {setUsersProfile})(AuthRedirectComponent)
