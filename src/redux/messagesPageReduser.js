@@ -1,5 +1,4 @@
 const type2 = 'ADD-NEW-MESSAGES';
-const type3 = 'UPDATE-MESSAGES-TEXT';
 
 let initialState = {
     messagesData: [
@@ -14,24 +13,20 @@ let initialState = {
         {id: 3, name: 'Roma'},
         {id: 4, name: 'Juliana'},
     ],
-    NewMessagesText: '',
 }
 
 const messagesPageReduser = (state = initialState, action) => {
     switch (action.type) {
         case type2:                                                        //отправляет данные по клику
-            let text = state.NewMessagesText;
+            let text = action.newMessagesElements;
             return  {
                 ...state,
-                NewMessagesText: '',
                 messagesData: [...state.messagesData, {id: 5, message: text}],
             };
-        case type3:                                              // обновляет textarea при вводе данных
-            return  {...state, NewMessagesText: action.newText}
         default:
             return state;
     }
 }
-export const addMessagesActionCreator = () => ({type: type2})
-export const updateMessagesTextActionCreator = (text) => ({type: type3, newText: text})
+export const addMessagesActionCreator = (newMessagesElements) => ({type: type2, newMessagesElements})
+
 export default messagesPageReduser;

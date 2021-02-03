@@ -19,7 +19,9 @@ const Header = (props) => {
                         <NavLink to='/newsfeed' className={stail.nav__link}>Newsfeed</NavLink>
                         <a href="#" className={stail.nav__link}>Settings</a>
                         <a href="/login" className={stail.nav__link}>Contact</a>
-                        {props.isAuth ?  props.login : <NavLink to={'/login'} className={stail.nav__link}>Login</NavLink>}
+                        {props.isAuth
+                            ? <div className={stail.btn}>{props.login} - <button onClick={props.logout}>Log out</button></div>
+                            : <NavLink to={'/login'} className={stail.nav__link}>Login</NavLink>}
                     </nav>
                 </div>
                 <button className={stail.menu_open}>

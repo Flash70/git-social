@@ -23,6 +23,7 @@
     font-size: 14px;
     text-transform: none;
     color: #05d8ff;
+    display: flex;
 }
 .nav__link {
     color: #fff;
@@ -51,6 +52,9 @@
 }
 .nav__link:hover:after {
     opacity: 1;
+}
+.btn {
+    display: flex;
 }
 .menu_open {
     background: none;

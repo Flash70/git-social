@@ -2,7 +2,6 @@ import {usersAPI} from "../api/api";
 
 
 const type = 'ADD-POST';
-const type1 = 'UPDATE-POST-TEXT';
 const set_Users_Profile = 'set-Users-Profile'
 
 let initialState = {
@@ -17,30 +16,25 @@ let initialState = {
         {id: 3, message: 'Yo', likesCount: 4},
         {id: 4, message: 'Yo Yo', likesCount: 7}
     ],
-    newPostText: '',
     profile: null,
 }
 
 const createPostReduser = (state = initialState, action) => {
     switch (action.type) {
         case type:
-            let text = state.newPostText;
+            let text = action.onPostChange;
             return {
                 ...state,
-                newPostText: '',
                 postData: [...state.postData, {id: 5, message: text, likesCount: 0}],
             }
-        case type1:                                // обновляет textarea при вводе данных
-            return {...state, newPostText: action.newText}
-        case set_Users_Profile:                                // обновляет textarea при вводе данных
+        case set_Users_Profile:
             return {...state, profile: action.profile}
         default:
             return state;
     }
 }
-export const addPostActionCreator = () => ({type: type})
+export const addPostActionCreator = (onPostChange) => ({type: type, onPostChange})
 export const setUsersProfile = (profile) => ({type: set_Users_Profile, profile})
-export const updatePostTextActionCreator = (text) => ({type: type1, newText: text})
 
 export const getUsersProfile = (userId) =>(dispatch) => {
     usersAPI.getProfile(userId)

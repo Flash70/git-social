@@ -21,29 +21,32 @@ let UsersFriends = (props) => {
                 }}>{page}</span>
             })}
         </div>
-        {
-            props.users.map(user =>
-                <div className={stail.container} key={user.id}>
-                    <div className={stail.friend_card}>
-                        <img src={img_card} alt="profile-cover" className={stail.img_responsive}/>
-                    </div>
-                    <div className={stail.card_info}>
-                        <NavLink to={'/home/' + user.id}>
-                            <img src={user.photos.small != null ? user.photos.small : userPhoto} alt="user"
-                                 className={stail.profile_photo_lg}/>
-                        </NavLink>
-                    </div>
-                    <div className={stail.friend_info}>
-                        {user.followed ?
-                            <a disabled={props.followingInProgress.some( id => id === user.id )} className={stail.pull_right} onClick={() => {
-                                props.unfollow(user.id)}}>My Friend</a> :
-                            <a disabled={props.followingInProgress.some( id => id === user.id )} className={stail.pull_right} onClick={() => {
-                                props.follow(user.id)}}>Add Friend</a>}
-                        <h4><a href="#" className={stail.profile_link}>{user.name}</a></h4>
-                        <p>Student at Harvard</p>
-                    </div>
-                </div>)}
-
+        {props.users.map(user =>
+            <div className={stail.container} key={user.id}>
+                <div className={stail.friend_card}>
+                    <img src={img_card} alt="profile-cover" className={stail.img_responsive}/>
+                </div>
+                <div className={stail.card_info}>
+                    <NavLink to={'/home/' + user.id}>
+                        <img src={user.photos.small != null ? user.photos.small : userPhoto} alt="user"
+                             className={stail.profile_photo_lg}/>
+                    </NavLink>
+                </div>
+                <div className={stail.friend_info}>
+                    {user.followed ?
+                        <a disabled={props.followingInProgress.some(id => id === user.id)} className={stail.pull_right}
+                           onClick={() => {
+                               props.unfollow(user.id)
+                           }}>My Friend</a> :
+                        <a disabled={props.followingInProgress.some(id => id === user.id)} className={stail.pull_right}
+                           onClick={() => {
+                               props.follow(user.id)
+                           }}>Add Friend</a>}
+                    <h4><a href="#" className={stail.profile_link}>{user.name}</a></h4>
+                    <p>Student at Harvard</p>
+                </div>
+            </div>)
+        }
     </div>
 }
 

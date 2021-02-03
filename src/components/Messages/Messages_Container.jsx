@@ -1,4 +1,4 @@
-import {addMessagesActionCreator, updateMessagesTextActionCreator} from "../../redux/messagesPageReduser";
+import {addMessagesActionCreator} from "../../redux/messagesPageReduser";
 import Messages from "./Messages";
 import {connect} from "react-redux";
 import React from "react";
@@ -14,8 +14,7 @@ let mapStateToProps = (state) => {
 
 let mapDispatchToProps = (dispatch) => {
     return {
-        addMessages: () => {dispatch(addMessagesActionCreator())},
-        updateMessages: (text) => {dispatch(updateMessagesTextActionCreator(text))},
+        addMessages: (newMessagesElements) => {dispatch(addMessagesActionCreator(newMessagesElements))},
     }
 }
 

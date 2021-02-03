@@ -42,7 +42,7 @@ let store_ = {
     getState() {                                         //вызов store_
         return this._state
     },
-    subscribe(observer) {                                 // функция передает renderEntireTree из index.js позволяя
+    subscribe(observer) {                                 // функция передает renderEntireTree из validators.js позволяя
         this._renderEntireTree = observer;                // рендерить страницу
     },
 

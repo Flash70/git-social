@@ -1,29 +1,23 @@
 import React from 'react';
 import stail from './Create_post.module.css';
 import img from '../../img/prof.jpg';
+import {Field, reduxForm} from "redux-form";
+import {requiredField, maxLengthCreator} from "../../../utils/validators/validators";
+import {Textarea} from "../../common/FormsControls/FormsControls";
+
+const maxLength30 = maxLengthCreator(30);
 
 
 const Create_post = (props) => {
-    //let newPostElement = React.createRef();                // ссылка на textarea через ref
-    let NewPostElements = props.newPostText
-
-    let Publish = () => {                                   //вызывается при нажатии на кнопку
-        props.newPost();
+    let Publish = (values) => {                                   //вызывается при нажатии на кнопку
+        props.newPost(values.onPostChange);
     };
-    let onPostChange = (event) => {                         //ВЫЗЫВАЕТСЯ КОГДА МЕНЯЕТСЯ textarea
-        let text = event.target.value;
-        props.updatePostText (text);
-    }
 
     return (
         <div>
             <div className={stail.my_post}>
                 <img className={stail.prof_photo} src={img} alt="user"/>
-                <textarea onChange={onPostChange} value={NewPostElements} className={stail.form_control}
-                          name="texts"
-                          cols="30" rows="1"
-                          placeholder="Write what you wish"/>
-                <a className={stail.btn} href="#" onClick={Publish}>Publish</a>
+                <AddCreatePostFormRedux onSubmit={Publish}/>
             </div>
             <div>
                 <hr/>
@@ -32,4 +26,14 @@ const Create_post = (props) => {
 
     )
 }
+
+const AddCreatePostForm = (props) => {
+    return (
+        <form onSubmit={props.handleSubmit} className={stail.form}>
+            <Field component={Textarea} name="onPostChange" validate={[requiredField, maxLength30]} placeholder="Write what you wish" className={stail.form_control}/>
+            <button className={stail.btn}>Publish</button>
+        </form>
+    )
+}
+const AddCreatePostFormRedux = reduxForm ({form:"addCreatePostForm"}) (AddCreatePostForm)
 export default Create_post;

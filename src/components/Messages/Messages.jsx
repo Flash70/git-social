@@ -3,43 +3,51 @@ import stail from './Messages.module.css';
 import DialogsFrindes from "./DialogsFriendes/DialogsFrindes";
 import MessageFrindes from "./MessageFriendes/MessagesFrindes";
 import MenuBar from "../Menu_Bar/MenuBar";
+import {Field, reduxForm} from "redux-form";
+import {Textarea} from "../common/FormsControls/FormsControls";
+import {maxLengthCreator, requiredField} from "../../utils/validators/validators";
+
+const maxLength30 = maxLengthCreator(30);
 
 const Messages = (props) => {
 
 
     let state = props.messagesPage;
 
-    let newSend = () => {
-        props.addMessages();
-    };
-    let onMessagesChange = (event) => {
-        let text = event.target.value;
-        props.updateMessages(text);
+    let addNewMessage = (values) => {
+        props.addMessages(values.newMessagesElements);
     }
     let friendsElements = state.friends.map(dialods => <DialogsFrindes name={dialods.name} key={dialods.id}
                                                                        id={dialods.id}/>);
     let messageElements = state.messagesData.map(message => <MessageFrindes message={message.message}
                                                                             key={message.id}/>);
-    let NewMessagesElements = state.NewMessagesText
+
 
     return (
         <div className={stail.container}>
             <div className={stail.menu_bar}>
                 <MenuBar/>
                 <div className={stail.dmessages}>
-                <div className={stail.dialods}>
-                    {friendsElements}
-                </div>
-                <div className={stail.messages}>
-                    {messageElements}
-                    <textarea onChange={onMessagesChange} value={NewMessagesElements}
-                              className={stail.form_control} name="texts" cols="30" rows="1"
-                              placeholder="Write what you wish"/>
-                    <a className={stail.btn} href="#" onClick={newSend}>Send</a>
-                </div>
+                    <div className={stail.dialods}>
+                        {friendsElements}
+                    </div>
+                    <div className={stail.messages}>
+                        {messageElements}
+                        <AddMessageFormRedux onSubmit={addNewMessage}/>
+                    </div>
                 </div>
             </div>
         </div>
     )
 }
+
+const AddMessageForm = (props) => {
+    return (
+        <form onSubmit={props.handleSubmit}>
+            <Field component={Textarea} validate={[requiredField,maxLength30]} name="newMessagesElements" placeholder="Write what you wish" className={stail.form_control}/>
+                      <button className={stail.btn}>Send</button>
+        </form>
+    )
+}
+const AddMessageFormRedux = reduxForm ({form: "dialogAddMessageForm"}) (AddMessageForm)
 export default Messages;
